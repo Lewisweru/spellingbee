@@ -35,7 +35,20 @@ const GameScreen: React.FC = () => {
   const checkSpelling = () => {
     const correct = userInput.toLowerCase() === currentWord.toLowerCase();
     setIsCorrect(correct);
-  };
+
+    if (correct) {
+        // Move to the next word if there are more words
+        if (currentWordIndex < wordList[difficulty].length - 1) {
+            setCurrentWordIndex(currentWordIndex + 1);
+            setCurrentWord(wordList[difficulty][currentWordIndex]);
+            setUserInput(''); // Clear the user input field
+            setIsCorrect(null); // Reset the correctness state
+        } else {
+            // Handle the end of the word list, e.g., show a completion message
+            alert('You\'ve finished the word list!');
+        }
+    }
+};
 
   return (
     <div className="space-y-8">
