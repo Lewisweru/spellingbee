@@ -78,6 +78,16 @@ const GameScreen: React.FC = () => {
       </svg>
     </div>
   </div>
+           <button
+            onClick={startPracticeMode}
+            className="flex flex-col items-center justify-center p-8 bg-white/10 backdrop-blur-lg rounded-lg border border-white/20 hover:bg-white/20 transition-colors"
+          >
+            <BookOpen className="h-16 w-16 text-white mb-4" />
+            <h3 className="text-2xl font-bold text-white">Practice Mode</h3>
+            <p className="text-white/80 mt-2 text-center">
+              Practice spelling at your own pace
+            </p>
+          </button>
 </div>
    )}
 
