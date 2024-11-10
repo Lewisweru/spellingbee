@@ -11,13 +11,13 @@ const GameScreen: React.FC = () => {
   const [userInput, setUserInput] = useState('');
   const [timer, setTimer] = useState(0);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
   // Function to get a random word based on difficulty
-  const getRandomWord = () => {
+const getRandomWord = () => {
     const words = wordList[difficulty];
-    const randomIndex = Math.floor(Math.random() * words.length);
-    setCurrentWord(words[randomIndex]);
-  };
+    setCurrentWord(words[currentWordIndex]);
+};
 
   const startPracticeMode = () => {
     setGameMode('practice');
@@ -48,6 +48,7 @@ const GameScreen: React.FC = () => {
             alert('You\'ve finished the word list!');
         }
     }
+    getRandomWord();
 };
 
   return (
