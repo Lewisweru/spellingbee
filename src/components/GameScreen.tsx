@@ -60,32 +60,26 @@ const GameScreen: React.FC = () => {
 
       {/* Difficulty Selection */}
       {!gameMode && (
-        <div className="space-y-4">
-          <div className="flex flex-col items-center">
-            <label className="text-white">Select Difficulty:</label>
-            <select
-              value={difficulty}
-              onChange={(e) => setDifficulty(e.target.value as 'easy' | 'medium' | 'hard')}
-              className="p-2 rounded-lg bg-white/10 text-white"
-            >
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
-            </select>
-          </div>
-
-          <button
-            onClick={startPracticeMode}
-            className="flex flex-col items-center justify-center p-8 bg-white/10 backdrop-blur-lg rounded-lg border border-white/20 hover:bg-white/20 transition-colors"
-          >
-            <BookOpen className="h-16 w-16 text-white mb-4" />
-            <h3 className="text-2xl font-bold text-white">Practice Mode</h3>
-            <p className="text-white/80 mt-2 text-center">
-              Practice spelling at your own pace
-            </p>
-          </button>
-        </div>
-      )}
+        <div className="flex flex-col items-center space-y-4">
+  <label className="text-lg font-semibold text-white mb-2">Select Difficulty:</label>
+  <div className="relative w-64">
+    <select
+      value={difficulty}
+      onChange={(e) => setDifficulty(e.target.value as 'easy' | 'medium' | 'hard')}
+      className="block w-full p-4 rounded-lg bg-indigo-700/20 text-white text-lg font-semibold appearance-none border border-white/20 hover:bg-indigo-700/30 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200"
+    >
+      <option value="easy" className="text-black">🟢 Easy</option>
+      <option value="medium" className="text-black">🟠 Medium</option>
+      <option value="hard" className="text-black">🔴 Hard</option>
+    </select>
+    <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </div>
+</div>
+   )}
 
       {/* Game Interface */}
       {gameMode === 'practice' && (
