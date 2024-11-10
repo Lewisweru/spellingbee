@@ -174,7 +174,12 @@ const getNextDifficulty = (currentDifficulty) => {
               className="w-full py-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold"
             >
               Check Spelling
-            </button>
+            </button
+            <div>
+              <p>Points: {points}</p>
+              <p>Lives: {lives}</p>
+            </div>
+            
           </div>
 
           {isCorrect !== null && (
