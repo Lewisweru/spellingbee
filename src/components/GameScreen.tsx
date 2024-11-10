@@ -12,6 +12,8 @@ const GameScreen: React.FC = () => {
   const [timer, setTimer] = useState(0);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [points, setPoints] = useState(0);
+const [lives, setLives] = useState(3);
 
   // Function to get a random word based on difficulty
 const getRandomWord = () => {
@@ -37,20 +39,54 @@ const getRandomWord = () => {
     setIsCorrect(correct);
 
     if (correct) {
-        // Move to the next word if there are more words
-        if (currentWordIndex < wordList[difficulty].length - 1) {
-            setCurrentWordIndex(currentWordIndex + 1);
-            setCurrentWord(wordList[difficulty][currentWordIndex]);
-            setUserInput(''); // Clear the user input field
-            setIsCorrect(null); // Reset the correctness state
+        setPoints(points + 10);
+        if (points >= 100) {
+            // Handle level completion (e.g., show a congratulatory message, move to the next difficulty level)
+            alert('Congratulations! You completed the level!');
+            // Reset points and lives for the next level
+            setPoints(0);
+            setLives(3);
+            setDifficulty(getNextDifficulty(difficulty)); // Implement getNextDifficulty function
         } else {
-            // Handle the end of the word list, e.g., show a completion message
-            alert('You\'ve finished the word list!');
+            if (currentWordIndex < wordList[difficulty].length - 1) {
+                setCurrentWordIndex(currentWordIndex + 1);
+                getRandomWord();
+                setUserInput('');
+                setIsCorrect(null);
+            } else {
+                // Handle end of word list
+                alert('You\'ve finished the word list!');
+            }
+        }
+    } else {
+        setLives(lives - 1);
+        if (lives === 0) {
+            // Handle game over (e.g., show a game over message, reset the game)
+            alert('Game Over! You ran out of lives.');
+            // Reset points and lives for a new game
+            setPoints(0);
+            setLives(3);
+            setDifficulty('easy'); // Reset to easy difficulty
         }
     }
-    getRandomWord();
 };
-
+const getNextDifficulty = (currentDifficulty) => {
+    switch (currentDifficulty) {
+        case 'easy':
+            return 'medium';
+        case 'medium':
+            return 'hard';
+        case 'hard':
+            // Consider adding an extra-hard level or resetting to easy
+            return 'easy';
+        default:
+            return 'easy';
+    }
+};
+<div>
+    <p>Points: {points}</p>
+    <p>Lives: {lives}</p>
+</div>
   return (
     <div className="space-y-8">
       <div className="flex justify-between items-center bg-white/10 backdrop-blur-lg rounded-lg p-4">
