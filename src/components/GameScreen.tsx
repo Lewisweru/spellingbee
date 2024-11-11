@@ -36,6 +36,9 @@ const getRandomWord = () => {
 
   const checkSpelling = () => {
     const correct = userInput.toLowerCase() === currentWord.toLowerCase();
+    console.log("User input:", userInput);
+    console.log("Current word:", currentWord);
+    console.log("Is the spelling correct?", correct);
     setIsCorrect(correct);
 
     if (correct) {
