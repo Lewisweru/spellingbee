@@ -61,6 +61,7 @@ const getRandomWord = () => {
         }
     } else {
         setLives(lives - 1);
+        console.log("isCorrect after incorrect:", isCorrect); 
         if (lives === 0) {
             // Handle game over (e.g., show a game over message, reset the game)
             alert('Game Over! You ran out of lives.');
@@ -78,7 +79,6 @@ const getNextDifficulty = (currentDifficulty) => {
         case 'medium':
             return 'hard';
         case 'hard':
-            // Consider adding an extra-hard level or resetting to easy
             return 'easy';
         default:
             return 'easy';
