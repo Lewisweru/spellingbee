@@ -37,17 +37,15 @@ const getRandomWord = () => {
   const checkSpelling = () => {
     const correct = userInput.toLowerCase() === currentWord.toLowerCase();
     setIsCorrect(correct);
-    console.log("isCorrect:", isCorrect); 
 
     if (correct) {
         setPoints(points + 10);
-        if (points >= 100) {
-            // Handle level completion (e.g., show a congratulatory message, move to the next difficulty level)
+
+        if (points + 10 >= 100) {
             alert('Congratulations! You completed the level!');
-            // Reset points and lives for the next level
             setPoints(0);
             setLives(3);
-            setDifficulty(getNextDifficulty(difficulty)); // Implement getNextDifficulty function
+            setDifficulty(getNextDifficulty(difficulty));
         } else {
             if (currentWordIndex < wordList[difficulty].length - 1) {
                 setCurrentWordIndex(currentWordIndex + 1);
@@ -55,23 +53,21 @@ const getRandomWord = () => {
                 setUserInput('');
                 setIsCorrect(null);
             } else {
-                // Handle end of word list
                 alert('You\'ve finished the word list!');
             }
         }
     } else {
         setLives(lives - 1);
-        console.log("isCorrect after incorrect:", isCorrect); 
-        if (lives === 0) {
-            // Handle game over (e.g., show a game over message, reset the game)
+
+        if (lives - 1 === 0) {
             alert('Game Over! You ran out of lives.');
-            // Reset points and lives for a new game
             setPoints(0);
             setLives(3);
-            setDifficulty('easy'); // Reset to easy difficulty
+            setDifficulty('easy');
         }
     }
 };
+
 const getNextDifficulty = (currentDifficulty) => {
     switch (currentDifficulty) {
         case 'easy':
