@@ -181,7 +181,7 @@ const getNextDifficulty = (currentDifficulty) => {
       </div>
 
       {/* Add the feedback message code here */}
-      {isCorrect !== null && (
+{isCorrect !== null && (
     <div className={`flex items-center justify-center p-4 rounded-lg ${
         isCorrect ? 'bg-green-500/10 text-green-200' : 'bg-red-500/10 text-red-200'
     }`}>
@@ -198,6 +198,7 @@ const getNextDifficulty = (currentDifficulty) => {
         )}
     </div>
 )}
+
 </div>
   </div>
 )}
