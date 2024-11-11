@@ -4,14 +4,6 @@ import { wordList } from '../utils/wordList';
 import { useEffect } from 'react';
 import { BookOpen, Trophy, User, LogOut, Volume2, Clock, Check, X } from 'lucide-react';
 
-// Display feedback when `isCorrect` changes
-useEffect(() => {
-    if (isCorrect === true) {
-        console.log('Correct answer! Displaying feedback.');
-    } else if (isCorrect === false) {
-        console.log('Incorrect answer. Displaying feedback.');
-    }
-}, [isCorrect]);
 
 const GameScreen: React.FC = () => {
   const { user, logout } = useAuth();
@@ -80,6 +72,15 @@ const getRandomWord = () => {
         }
     }
 };
+
+// Display feedback when `isCorrect` changes
+useEffect(() => {
+  if (isCorrect === true) {
+      console.log('Correct answer! Displaying feedback.');
+  } else if (isCorrect === false) {
+      console.log('Incorrect answer. Displaying feedback.');
+  }
+}, [isCorrect]);
 
 const getNextDifficulty = (currentDifficulty) => {
     switch (currentDifficulty) {
