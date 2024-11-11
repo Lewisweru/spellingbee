@@ -1,7 +1,17 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { wordList } from '../utils/wordList';
+import { useEffect } from 'react';
 import { BookOpen, Trophy, User, LogOut, Volume2, Clock, Check, X } from 'lucide-react';
+
+// Display feedback when `isCorrect` changes
+useEffect(() => {
+    if (isCorrect === true) {
+        console.log('Correct answer! Displaying feedback.');
+    } else if (isCorrect === false) {
+        console.log('Incorrect answer. Displaying feedback.');
+    }
+}, [isCorrect]);
 
 const GameScreen: React.FC = () => {
   const { user, logout } = useAuth();
@@ -180,7 +190,7 @@ const getNextDifficulty = (currentDifficulty) => {
         <p>Lives: {lives}</p>
       </div>
 
-      {/* Add the feedback message code here */}
+{/* Feedback Message */}
 {isCorrect !== null && (
     <div className={`flex items-center justify-center p-4 rounded-lg ${
         isCorrect ? 'bg-green-500/10 text-green-200' : 'bg-red-500/10 text-red-200'
@@ -198,6 +208,7 @@ const getNextDifficulty = (currentDifficulty) => {
         )}
     </div>
 )}
+
 
 </div>
   </div>
