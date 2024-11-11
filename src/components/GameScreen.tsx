@@ -37,38 +37,38 @@ const getRandomWord = () => {
   };
 
   const checkSpelling = () => {
-    const correct = userInput.toLowerCase() === currentWord.toLowerCase();
-    console.log("User input:", userInput);
-    console.log("Current word:", currentWord);
-    console.log("Is the spelling correct?", correct);
+    const correct = userInput.toLowerCase().trim() === currentWord.toLowerCase().trim();
     setIsCorrect(correct);
 
     if (correct) {
-        setPoints(points + 10);
+        setPoints((prevPoints) => prevPoints + 10);
 
         if (points + 10 >= 100) {
             alert('Congratulations! You completed the level!');
-            setPoints(0);
-            setLives(3);
-            setDifficulty(getNextDifficulty(difficulty));
+            resetGame();
         } else {
             if (currentWordIndex < wordList[difficulty].length - 1) {
-                setCurrentWordIndex(currentWordIndex + 1);
-                getRandomWord();
-                setUserInput('');
-                setIsCorrect(null);
+                setCurrentWordIndex((prevIndex) => prevIndex + 1);
+                setTimeout(() => {
+                    getRandomWord();
+                    setUserInput('');
+                    setIsCorrect(null);
+                }, 1500); // Delay to show the feedback message
             } else {
-                alert('You\'ve finished the word list!');
+                alert("You've finished the word list!");
             }
         }
     } else {
-        setLives(lives - 1);
+        setLives((prevLives) => prevLives - 1);
 
         if (lives - 1 === 0) {
             alert('Game Over! You ran out of lives.');
-            setPoints(0);
-            setLives(3);
-            setDifficulty('easy');
+            resetGame();
+        } else {
+            setTimeout(() => {
+                setUserInput('');
+                setIsCorrect(null);
+            }, 1500); // Delay to show the feedback message
         }
     }
 };
@@ -209,6 +209,15 @@ const getNextDifficulty = (currentDifficulty) => {
         )}
     </div>
 )}
+const resetGame = () => {
+    setPoints(0);
+    setLives(3);
+    setDifficulty('easy');
+    setCurrentWordIndex(0);
+    getRandomWord();
+    setUserInput('');
+    setIsCorrect(null);
+};
 
 
 </div>
