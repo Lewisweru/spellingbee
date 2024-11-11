@@ -37,6 +37,7 @@ const getRandomWord = () => {
   const checkSpelling = () => {
     const correct = userInput.toLowerCase() === currentWord.toLowerCase();
     setIsCorrect(correct);
+    console.log("isCorrect:", isCorrect); 
 
     if (correct) {
         setPoints(points + 10);
@@ -183,21 +184,21 @@ const getNextDifficulty = (currentDifficulty) => {
       {/* Add the feedback message code here */}
       {isCorrect !== null && (
     <div className={`flex items-center justify-center p-4 rounded-lg ${
-      isCorrect ? 'bg-green-500/10 text-green-200' : 'bg-red-500/10 text-red-200'
+        isCorrect ? 'bg-green-500/10 text-green-200' : 'bg-red-500/10 text-red-200'
     }`}>
-      {isCorrect ? (
-        <div>
-          <Check className="h-6 w-6 mr-2" />
-          <p>Correct! You earned 10 points.</p>
-        </div>
-      ) : (
-        <div>
-          <X className="h-6 w-6 mr-2" />
-          <p>Incorrect. The word was "{currentWord}".</p>
-        </div>
-      )}
+        {isCorrect ? (
+            <div>
+                <Check className="h-6 w-6 mr-2" />
+                <p>Correct! You earned 10 points.</p>
+            </div>
+        ) : (
+            <div>
+                <X className="h-6 w-6 mr-2" />
+                <p>Incorrect. The word was "{currentWord}".</p>
+            </div>
+        )}
     </div>
-  )}
+)}
 </div>
   </div>
 )}
