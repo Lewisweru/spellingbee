@@ -1,6 +1,7 @@
 import React from 'react';
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import AuthScreen from './components/AuthScreen';
 import GameScreen from './components/GameScreen';
 import { useAuth } from './context/AuthContext';
