@@ -81,6 +81,17 @@ useEffect(() => {
       console.log('Incorrect answer. Displaying feedback.');
   }
 }, [isCorrect]);
+ 
+const resetGame = () => {
+  setPoints(0);
+  setLives(3);
+  setDifficulty('easy');
+  setCurrentWordIndex(0);
+  getRandomWord();
+  setUserInput('');
+  setIsCorrect(null);
+};
+
 
 const getNextDifficulty = (currentDifficulty) => {
     switch (currentDifficulty) {
@@ -209,16 +220,6 @@ const getNextDifficulty = (currentDifficulty) => {
         )}
     </div>
 )}
-const resetGame = () => {
-    setPoints(0);
-    setLives(3);
-    setDifficulty('easy');
-    setCurrentWordIndex(0);
-    getRandomWord();
-    setUserInput('');
-    setIsCorrect(null);
-};
-
 
 </div>
   </div>
