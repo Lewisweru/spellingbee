@@ -142,56 +142,56 @@ const getNextDifficulty = (currentDifficulty) => {
    )}
 
       {/* Game Interface */}
-      {gameMode === 'practice' && (
-        <div className="bg-white/10 backdrop-blur-lg rounded-lg p-8 space-y-6">
-          <div className="flex justify-between items-center">
-            <h3 className="text-2xl font-bold text-white">Practice Mode</h3>
-            <div className="flex items-center space-x-2 text-white">
-              <Clock className="h-5 w-5" />
-              <span>{timer}s</span>
-            </div>
-          </div>
+{gameMode === 'practice' && (
+  <div className="bg-white/10 backdrop-blur-lg rounded-lg p-8 space-y-6">
+    <div className="flex justify-between items-center">
+      <h3 className="text-2xl font-bold text-white">Practice Mode</h3>
+      <div className="flex items-center space-x-2 text-white">
+        <Clock className="h-5 w-5" />
+        <span>{timer}s</span>
+      </div>
+    </div>
 
-          <div className="flex justify-center space-x-4">
-            <button
-              onClick={speakWord}
-              className="p-4 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white"
-            >
-              <Volume2 className="h-6 w-6" />
-            </button>
-          </div>
+    <div className="flex justify-center space-x-4">
+      <button
+        onClick={speakWord}
+        className="p-4 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white"
+      >
+        <Volume2 className="h-6 w-6" />
+      </button>
+    </div>
 
-          <div className="space-y-4">
-            <input
-              type="text"
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-              placeholder="Type your spelling here..."
-              className="w-full p-4 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-            <button
-              onClick={checkSpelling}
-              className="w-full py-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold"
-            >
-              Check Spelling
-            </button
-            <div>
-              <p>Points: {points}</p>
-              <p>Lives: {lives}</p>
-            </div>
-            
-          </div>
+    <div className="space-y-4">
+      <input
+        type="text"
+        value={userInput}
+        onChange={(e) => setUserInput(e.target.value)}
+        placeholder="Type your spelling here..."
+        className="w-full p-4 rounded-lg bg-white/5 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+      <button
+        onClick={checkSpelling}
+        className="w-full py-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-semibold"
+      >
+        Check Spelling
+      </button>
+      <div>
+        <p>Points: {points}</p>
+        <p>Lives: {lives}</p>
+      </div>
 
-          {isCorrect !== null && (
-            <div className={`flex items-center justify-center p-4 rounded-lg ${
-              isCorrect ? 'bg-green-500/10 text-green-200' : 'bg-red-500/10 text-red-200'
-            }`}>
-              {isCorrect ? <Check className="h-6 w-6 mr-2" /> : <X className="h-6 w-6 mr-2" />}
-              {isCorrect ? 'Correct!' : `Incorrect. The word was "${currentWord}"`}
-            </div>
-          )}
+      {/* Add the feedback message code here */}
+      {isCorrect !== null && (
+        <div className={`flex items-center justify-center p-4 rounded-lg ${
+          isCorrect ? 'bg-green-500/10 text-green-200' : 'bg-red-500/10 text-red-200'
+        }`}>
+          {isCorrect ? <Check className="h-6 w-6 mr-2" /> : <X className="h-6 w-6 mr-2" />}
+          {isCorrect ? 'Correct!' : `Incorrect. The word was "${currentWord}"`}
         </div>
       )}
+    </div>
+  </div>
+)}
     </div>
   );
 };
